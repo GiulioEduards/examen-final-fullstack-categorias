@@ -33,26 +33,26 @@ export class CategoriasService {
 
 
     listarCategorias(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(`${this.base}/categorias`);
+    return this.http.get<Categoria[]>(`${this.base}/categoria`);
   }
 
 
   crearCategoria(categoria: Omit<Categoria, 'id'>): Observable<Categoria> {
-    return this.http.post<Categoria>(`${this.base}/categorias`, categoria);
+    return this.http.post<Categoria>(`${this.base}/categoria`, categoria);
   }
 
   obtenerCategoriaPorId(id: number): Observable<Categoria> {
-    return this.http.get<Categoria>(`${this.base}/categorias/${id}`);
+    return this.http.get<Categoria>(`${this.base}/categoria/${id}`);
   }
 
   modificarCategoria(id: number, categoria: Omit<Categoria, 'id'>): Observable<Categoria> {
-  return this.http.put<Categoria>(`${this.base}/categorias/${id}`, categoria);
+  return this.http.put<Categoria>(`${this.base}/categoria/${id}`, categoria);
 }
   // modificarCategoria(id: number, categoria: Categoria): Observable<Categoria> {
   //   return this.http.put<Categoria>(`${this.base}/categorias/${id}`, categoria);
   // }
   eliminarCategoria(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.base}/categorias/${id}`);
+    return this.http.delete<void>(`${this.base}/categoria/${id}`);
   }
 
 }

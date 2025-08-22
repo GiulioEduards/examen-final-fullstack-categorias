@@ -39,7 +39,7 @@ export class Categorias {
     this.categoriasService.listarCategorias().subscribe({
       next: (rows) => {
         this.categorias = rows as Categoria[];
-        // console.log(this.categorias);
+         console.log(this.categorias);
       }
     });
   }
