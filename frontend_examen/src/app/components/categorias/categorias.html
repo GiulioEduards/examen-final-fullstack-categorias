@@ -1,0 +1,104 @@
+
+
+<div class="cont1">
+  <div class="table-container">
+    <h3>Administración de Categorías</h3>
+
+    <div class="button-container">
+      <button id="btnAdd" class="btn btn-add" (click)="abrirModal()">
+        <!-- <button class="btn btn-add" (click)="abrirModal()"> -->
+
+        <svg class="icon" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+          />
+        </svg>
+        Nueva Categoría
+      </button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="categoriesTableBody">
+        @for (item of categorias; track item.id){
+
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>
+            <img class="imgCatTable"
+              [src]="item.image"
+              alt="Imagen de {{ item.name }}"
+              
+            />
+          </td>
+
+          <td>{{ item.name }}</td>
+
+          <td>{{ item.description }}</td>
+
+          <td class="acciones-cell">
+          <button class="btn btn-edit" (click)="editarCategoria(item)">
+            ✏️ Editar
+          </button>
+          <button class="btn btn-delete" (click)="eliminarCategoria(item.id)">
+            🗑️ Eliminar
+          </button>
+        </td>
+
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal Angular -->
+  <div class="modal" *ngIf="mostrarModal">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarModal()">&times;</span>
+      <h4>{{ esEdicion ? "Editar Categoría" : "Nueva Categoría" }}</h4>
+
+      <div class="form-group">
+        <label>Nombre</label>
+        <input
+          type="text"
+          [(ngModel)]="formCategoria.name"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Descripción</label>
+        <textarea
+          [(ngModel)]="formCategoria.description"
+          class="form-control"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Imagen (URL)</label>
+        <input
+          type="text"
+          [(ngModel)]="formCategoria.image"
+          class="form-control"
+        />
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn btn-edit" (click)="cerrarModal()">Cancelar</button>
+        <button class="btn btn-add" (click)="guardarCategoria()">
+          {{ esEdicion ? "Actualizar" : "Guardar" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
