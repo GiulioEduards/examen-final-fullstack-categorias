@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
-class CategoriaControllerr extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class CategoriaControllerr extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:categorias',
+            'name' => 'required|string|max:255|unique:categoria',
             'description' => 'nullable|string',
             'image' => 'nullable|string|max:1000',
             'is_active' => 'boolean'
@@ -44,7 +44,7 @@ class CategoriaControllerr extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = Str::uuid() . '.' . $request->imagen->extension();
-            $imagePath = $request->file('image')->storeAs('categorias', $imageName, 'public');
+            $imagePath = $request->file('image')->storeAs('categoria', $imageName, 'public');
             $data['image'] = $imagePath;
         }
 
@@ -89,7 +89,7 @@ class CategoriaControllerr extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'name' => 'sometimes|required|string|max:255|unique:categorias,name,' . $id,
+            'name' => 'sometimes|required|string|max:255|unique:categoria,name,' . $id,
             'description' => 'nullable|string',
             'image' => 'nullable|string|max:1000',
             'is_active' => 'boolean'
@@ -116,7 +116,7 @@ class CategoriaControllerr extends Controller
             }
 
             $imageName = Str::uuid() . '.' . $request->imagen->extension();
-            $imagePath = $request->file('image')->storeAs('categorias', $imageName, 'public');
+            $imagePath = $request->file('image')->storeAs('categoria', $imageName, 'public');
             $data['image'] = $imagePath;
         }
 

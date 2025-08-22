@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Categoria;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,8 +19,8 @@ class CategoriaSeeder extends Seeder
         ['name' => 'Bebidas', 'description' => 'Refrescos y jugos'],
     ];
 
-    // foreach ($categories as $category) {
-    //     Categoria::create($category);
-    // }
+    foreach ($categories as $category) {
+        Categoria::create($category);
+    }
     }
 }
